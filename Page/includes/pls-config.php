@@ -1,7 +1,7 @@
 <?php
-  define('USER', '');
-  define('PASSWORD', '');
-  define('SERVER', '');
-  define('DATABASE', 'Apotek');
+  define("USER", "root");
+  define("PASSWORD", "");
+  define("SERVER", "localhost");
+  define("DATABASE", "apotek");
 
 ?>
