@@ -1,5 +1,6 @@
 <?php
   include_once 'db_connect.php';
+  include_once 'function.php';
   session_start();
   echo 'Hello';
   $cpr = $_POST["CPR"];
