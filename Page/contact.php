@@ -17,7 +17,8 @@
       </ul>
     </div>
     <div class="main">
-      <p><?php include('text/test_text.txt'); ?></p>
+      <img src="http://i.imgur.com/JUGpSzE.jpg" height="500">
+      <p><?php include('text/contact.txt'); ?></p>
     </div>
   </body>
 </html>
