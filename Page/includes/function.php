@@ -5,6 +5,7 @@ function FindCityName($zipcode)
   $result = CallAPI("http://dawa.aws.dk/postnumre", array("nr" => $zipcode));
   $obj = json_decode($result);
   //Finding the name of the zipcode in the json returned by the api.
+  if ($obj == null) return null;
   return $obj[0]->navn;
 }
 

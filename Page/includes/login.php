@@ -2,9 +2,7 @@
   include_once 'db_connect.php';
   include_once 'function.php';
   session_start();
-  echo 'Hello';
   $cpr = $_POST["CPR"];
-  echo $cpr;
   if (ctype_digit($cpr)) {
     $stmt = $mysqli->prepare("SELECT Password FROM User WHERE CPR = ?");
     $stmt->bind_param("i",  $cpr);
