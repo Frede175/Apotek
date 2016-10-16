@@ -2,10 +2,11 @@
   include_once 'db_connect.php';
   include_once 'functions.php';
   session_start();
-  $cpr = $_POST["CPR"];
+  //$cpr = $_POST["CPR"];
+  $cpr = '1234';
   if (ctype_digit($cpr)) {
     $stmt = $mysqli->prepare("SELECT ID, Password FROM User WHERE CPR = ?");
-    $stmt->bind_param("i",  $cpr);
+    $stmt->bind_param("i", $cpr);
     if ($stmt->execute()) {
       $stmt->bind_result($result);
       $stmt->fetch();
@@ -18,10 +19,12 @@
             header("Location: ../index.php");
         }
       }
+      header("Location: ../login.php?message=Wrong CPR or password");
     }
-
+    header("Location: ../login.php?message=Error");
 
   }
+  header("Location: ../login.php?message=CPR needs to be a number");
 
 
 ?>

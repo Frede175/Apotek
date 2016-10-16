@@ -1,0 +1,27 @@
+<!--
+  Please add something like header, menu, and more stoff
+-->
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <title>FnJ Apotek</title>
+</head>
+
+<body>
+
+  <div class="main">
+    <?php if (isset($_GET["message"])):?>
+      <div class="message"> <!-- Needs to be styled -->
+        <?php echo $_GET["message"]; ?>
+      </div>
+    <?php endif ?>
+
+    <form method="post" action="includes/login.php">
+      <input id="CPR" name="CPR" type="text" placeholder="CPR">
+      <input id="password" name="password" type="password" placeholder="Password">
+      <input type="submit" name="submit">
+    </form>
+  </div>
+</body>
+
+</html>

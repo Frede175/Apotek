@@ -26,6 +26,24 @@ function CallAPI($url, $data = false)
   return $result;
 }
 
-
+/**
+ * Gets the security level of the user
+ * @param $mysqli  Connection
+ * @param int $user_id
+ * @return int Security level
+ */
+function GetSecurityLevel($mysqli, $user_id) {
+  $stmt = $mysqli->prepare("SELECT Roles.AccessLevel FROM User INNER JOIN Roles ON User.Roles_ID = Roles.ID WHERE User.ID = ?");
+  $stmt->bind_param("i", $user_id);
+  if ($stmt->execute()) {
+    $stmt->bind_result($result);
+    $stmt->fetch();
+    $stmt->close();
+    if ($result != null) {
+      return $result["AccessLevel"];
+    }
+  }
+  return null;
+}
 
 ?>
