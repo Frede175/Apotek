@@ -3,7 +3,7 @@
   include_once 'functions.php';
   session_start();
   $cpr = $_POST["CPR"];
-  if (is_digits($cpr)) {
+  if (ctype_digit($cpr)) {
     $stmt = $mysqli->prepare("SELECT ID, Password FROM User WHERE CPR = ?");
     $stmt->bind_param("i", $cpr);
     if ($stmt->execute()) {
@@ -15,19 +15,17 @@
         $hash = password_hash($password, PASSWORD_DEFAULT, ['cost' => 12]);
         if ($hash == $result['Password']) {
             $_SESSION["user_id"] = $result["ID"];
-            header("Location: ../index.php");
+            redirect("../index.php");
         }
       }
-      header("Location: ../login.php?message=Wrong CPR or password");
-      return;
+      redirect("../login.php?message=Wrong CPR or password");
     }
-    else {
-      header("Location: ../login.php?message=Error");
-    }
+    redirect("../login.php?message=Error");
+
   }
-  else {
-    header("Location: ../login.php?message=CPR needs to be a number");
-  }
+  redirect("../login.php?message=CPR needs to be a number");
+
 
 
 ?>
+½

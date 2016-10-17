@@ -64,7 +64,7 @@
               $_SESSION["user_id"] = $mysqli->insert_id;
               $stmt_register->close();
               $mysqli->close();
-              header("Location: ../index.php");
+              redirect("../index.php");
             }
           }
 

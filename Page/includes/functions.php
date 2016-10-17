@@ -46,9 +46,10 @@ function GetSecurityLevel($mysqli, $user_id) {
   return null;
 }
 
-function is_digits($element)
+function redirect($url)
 {
-    return !preg_match ("/[^0-9]/", $element);
+   header('Location: ' . $url, true);
+   die();
 }
 
 ?>

@@ -29,22 +29,22 @@
                 $stmt_stock->bind_param("ii", $product_number, $stock);
                 if ($stmt->execute()) {
                   if ($stmt->affected_rows == 1) {
-                    header("Location: ../ViewProducts.php?message=Add Product success and stock is up to date!");
+                    redirect("../ViewProducts.php?message=Add Product success and stock is up to date!");
                   }
                 }
-                header("Location: ../ViewProducts.php?message=Add Product success. Stock not up to date!");
+                redirect("../ViewProducts.php?message=Add Product success. Stock not up to date!");
               }
-              header('Location: ../AddProduct.php?message=Error!');
+              redirect('../AddProduct.php?message=Error!');
             }
-            header('Location: ../AddProduct.php?message=Error!');
+            redirect('../AddProduct.php?message=Error!');
           }
-          header("Location: ../AddProduct.php?message=Product already exist!");
+          redirect("../AddProduct.php?message=Product already exist!");
         }
-        header('Location: ../AddProduct.php?message=Error!');
+        redirect('../AddProduct.php?message=Error!');
       }
-      header('Location: ../AddProduct.php?message=Wrong values type!');
+      redirect('../AddProduct.php?message=Wrong values type!');
     }
-    header('Location: ../login.php?message=You dont have permission to add a product!');
+    redirect('../login.php?message=You dont have permission to add a product!');
   }
-  header('Location: ../login.php?message=You need to login!');
+  redirect('../login.php?message=You need to login!');
 ?>

@@ -9,9 +9,9 @@
     $stmt->bind_param("i", $product_number);
     if ($stmt->execute()) {
       if ($stmt->affected_rows > 0) {
-        header("Location: ../ViewProducts.php?message=Delete success");
+        redirect("../ViewProducts.php?message=Delete success");
       }
     }
   }
-  header("Location: ../RemoveProduct.php?message=Delete failed");
+  redirect("../RemoveProduct.php?message=Delete failed");
 ?>
