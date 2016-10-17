@@ -19,7 +19,7 @@ body {
 }
 
 .main {
-	background-color: #0000FF;
+	background-color: #FFFFFF;
 	margin: 0 auto;
 	padding: 0;
 	width: 75%;
@@ -47,7 +47,7 @@ li {
 }
 
 li a {
-	background-color: #FF00FF;
+	background-color: #0000FF;
 	display: inline-block;
 	padding: 8px 16px;
 	width: auto;
