@@ -48,7 +48,7 @@ function GetSecurityLevel($mysqli, $user_id) {
 
 function redirect($url)
 {
-   header('Location: ' . $url, true);
+   header('Location: ' . $url);
    die();
 }
 

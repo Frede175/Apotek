@@ -1,10 +1,11 @@
-<<?php
-  $message = $_GET["message"]; //Use this to get the message from the server about error and success.
-?>
 <!--
   Please add something like header, menu, and more stoff
 -->
-
+<?php
+  include_once 'includes/functions.php';
+  session_start();
+  if (!isset($_SESSION['user_id'])) redirect("login.php?message=You need to be logged in to view the page!")
+?>
 
 <html>
 <head>
