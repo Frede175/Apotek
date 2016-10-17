@@ -1,0 +1,33 @@
+<b>Location 1</b>
+<br>
+City: Somewhere
+<br>
+Zip: 1234
+<br>
+Adress: Something st. 69
+<br>
+Phone: +69 69 420 1337
+<br>
+<b>Open hours:</b>
+<br>
+Everyday: Never-never
+<br>
+
+<br>
+<b>Location 2</b>
+<br>
+City: Somewhere
+<br>
+Zip: 1234
+<br>
+Adress: Something st. 69
+<br>
+Phone: +69 69 420 1337
+<br>
+<b>Open hours:</b>
+<br>
+Monday-Friday: 7AM - 8PM
+<br>
+Saturday: 10AM - 4PM
+<br>
+Sunday: Closed
