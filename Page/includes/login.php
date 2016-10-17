@@ -2,9 +2,8 @@
   include_once 'db_connect.php';
   include_once 'functions.php';
   session_start();
-  //$cpr = $_POST["CPR"];
-  $cpr = '1234';
-  if (ctype_digit($cpr)) {
+  $cpr = $_POST["CPR"];
+  if (is_digits($cpr)) {
     $stmt = $mysqli->prepare("SELECT ID, Password FROM User WHERE CPR = ?");
     $stmt->bind_param("i", $cpr);
     if ($stmt->execute()) {
@@ -20,11 +19,15 @@
         }
       }
       header("Location: ../login.php?message=Wrong CPR or password");
+      return;
     }
-    header("Location: ../login.php?message=Error");
-
+    else {
+      header("Location: ../login.php?message=Error");
+    }
   }
-  header("Location: ../login.php?message=CPR needs to be a number");
+  else {
+    header("Location: ../login.php?message=CPR needs to be a number");
+  }
 
 
 ?>

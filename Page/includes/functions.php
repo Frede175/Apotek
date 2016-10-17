@@ -46,4 +46,9 @@ function GetSecurityLevel($mysqli, $user_id) {
   return null;
 }
 
+function is_digits($element)
+{
+    return !preg_match ("/[^0-9]/", $element);
+}
+
 ?>
