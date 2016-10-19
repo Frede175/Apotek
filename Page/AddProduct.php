@@ -3,8 +3,10 @@
 -->
 <?php
   include_once 'includes/functions.php';
+  include_once 'includes/db_connect.php';
   session_start();
-  if (!isset($_SESSION['user_id'])) redirect("login.php?message=You need to be logged in to view the page!")
+  if (!isset($_SESSION['user_id'])) redirect("login.php?message=You need to be logged in to view the page!");
+  if (!RequireKey($mysqli, array("ManageProducts"))) redirect("login.php?message=You don't have permission to access this page!");
 ?>
 
 <html>
@@ -29,7 +31,7 @@
       <input id="Description" name="Description" type="text" placeholder="Description">
       <input id="stock" name="stock" type="text" placeholder="Stock">
       <input id="Price" name="Price" type="text" placeholder="Price">
-      <input id="Price" name="Price" type="checkbox" placeholder="Price">
+      Prescription: <input id="Prescription" name="Prescription" type="checkbox" placeholder="Prescription">
       <input type="submit" name="submit">
     </form>
   </div>

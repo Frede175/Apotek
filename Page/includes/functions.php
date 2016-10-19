@@ -26,24 +26,48 @@ function CallAPI($url, $data = false)
   return $result;
 }
 
+
 /**
- * Gets the security level of the user
- * @param $mysqli  Connection
- * @param int $user_id
- * @return int Security level
+ * Get the differnet key the that user have
+ * @param [type] $mysqli Connection
+ * @param int $userID The user id
+ * @return Array of keys that the user have.
  */
-function GetSecurityLevel($mysqli, $user_id) {
-  $stmt = $mysqli->prepare("SELECT Roles.AccessLevel FROM User INNER JOIN Roles ON User.Roles_ID = Roles.ID WHERE User.ID = ?");
-  $stmt->bind_param("i", $user_id);
-  if ($stmt->execute()) {
-    $stmt->bind_result($result);
-    $stmt->fetch();
-    $stmt->close();
-    if ($result != null) {
-      return $result["AccessLevel"];
+function GetUserKeys($mysqli, $userID) {
+  $stmt = $mysqli->prepare(
+  "SELECT
+  	seckeys.Key
+  FROM seckeys
+	  INNER JOIN roles_has_seckeys ON roles_has_seckeys.SecKeys_Key = seckeys.Key
+	  INNER JOIN roles ON roles.ID = roles_has_seckeys.Roles_ID
+	  INNER JOIN user ON user.Roles_ID = roles.ID
+  WHERE
+	  user.ID = ?"
+  );
+  $stmt->bind_param('i', $userID);
+  if (!($stmt->execute())) return array();
+  $stmt->bind_result($key);
+  $keys = array();
+  while ($stmt->fetch()) {
+    $keys[] = $key;
+  }
+  return $keys;
+}
+
+/**
+ * Specify the key to access the page.
+ * @param [type] $mysqli Connection
+ * @param array $keys An array of allowed keys
+ * @return bool If the user has access to the page.
+ */
+function RequireKey($mysqli, $keys) {
+  $userKeys = GetUserKeys($mysqli, $_SESSION['user_id']);
+  foreach ($keys as $key) {
+    foreach ($userKeys as $UserKey) {
+      if ($key == $UserKey) return true;
     }
   }
-  return null;
+  return false;
 }
 
 function redirect($url)

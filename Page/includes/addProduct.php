@@ -1,12 +1,11 @@
-<<?php
+<?php
   include_once "db_connect.php";
   include_once "functions.php";
 
   session_start();
   if (isset($_SESSION['user_id'])) {
     //Get user sec level:
-    $AccessLevel = GetSecurityLevel($mysqli, $_SESSION['user_id']);
-    if ($AccessLevel >= 1) {
+    if (RequireKey($mysqli, array("ManageProducts"))) {
       $product_number = $_POST["ProductNumber"];
       $name = $_POST["Name"];
       $description = $_POST["Description"];
