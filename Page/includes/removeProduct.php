@@ -9,7 +9,7 @@
     $stmt->bind_param("i", $product_number);
     if ($stmt->execute()) {
       if ($stmt->affected_rows > 0) {
-        redirect("../ViewProducts.php?message=Delete success");
+        redirect("../shop.php?message=Delete success");
       }
     }
   }

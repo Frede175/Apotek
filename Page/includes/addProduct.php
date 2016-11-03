@@ -28,10 +28,10 @@
                 $stmt_stock->bind_param("ii", $product_number, $stock);
                 if ($stmt->execute()) {
                   if ($stmt->affected_rows == 1) {
-                    redirect("../ViewProducts.php?message=Add Product success and stock is up to date!");
+                    redirect("../shop.php?message=Add Product success and stock is up to date!");
                   }
                 }
-                redirect("../ViewProducts.php?message=Add Product success. Stock not up to date!");
+                redirect("../shop.php?message=Add Product success. Stock not up to date!");
               }
               redirect('../AddProduct.php?message=Error!');
             }
