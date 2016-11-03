@@ -26,8 +26,25 @@ body {
 	height: 100%;
 }
 
-.singupin {
+.signupin {
 	margin: 4px;
+}
+
+.float_right{
+	float: right;
+	padding: 8px 16px;
+	width: auto;
+	color: #FFF;
+}
+
+.message {
+	width: 100%;
+	background-color: #00AAFF;
+	border-radius: 10px;
+	text-align: center;
+	font-size: 1.5em;
+	margin: auto;
+	margin-top: 24px;
 }
 
 object {
@@ -70,4 +87,17 @@ li a {
 
 li a:hover {
 	background-color: #00FFFF;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  padding: 0.25rem;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+tbody tr:nth-child(odd) {
+  background: #eee;
 }

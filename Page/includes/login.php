@@ -4,23 +4,21 @@
   session_start();
   $cpr = $_POST["CPR"];
   if (ctype_digit($cpr)) {
-    $stmt = $mysqli->prepare("SELECT ID, Password FROM User WHERE CPR = ?");
+    $stmt = $mysqli->prepare("SELECT ID, Password FROM user WHERE CPR = ?");
     $stmt->bind_param("i", $cpr);
     if ($stmt->execute()) {
-      $stmt->bind_result($result);
+      $stmt->bind_result($ID, $dbpassword);
       $stmt->fetch();
-      $stmt->close();
-      if ($mysqli->affected_rows == 1) {
+      if (isset($ID) && $ID != null) {
         $password = $_POST['password'];
-        $hash = password_hash($password, PASSWORD_DEFAULT, ['cost' => 12]);
-        if ($hash == $result['Password']) {
-            $_SESSION["user_id"] = $result["ID"];
+        if (password_verify($password, $dbpassword)) {
+            $_SESSION["user_id"] = $ID;
             redirect("../index.php");
         }
       }
       redirect("../login.php?message=Wrong CPR or password");
     }
-    redirect("../login.php?message=Error");
+    redirect("../login.php?message=Error ");
 
   }
   redirect("../login.php?message=CPR needs to be a number");
@@ -28,4 +26,3 @@
 
 
 ?>
-½

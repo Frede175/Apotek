@@ -26,6 +26,15 @@ function CallAPI($url, $data = false)
   return $result;
 }
 
+function GetFullName($mysqli, $userID) {
+  $stmt = $mysqli->prepare("SELECT FirstName, LastName FROM User WHERE ID = ?");
+  $stmt->bind_param('i', $userID);
+  if (!($stmt->execute())) return "Error";
+  $stmt->bind_result($FirstName, $LastName);
+  $stmt->fetch();
+  $stmt->close();
+  return $FirstName . " " . $LastName; 
+}
 
 /**
  * Get the differnet key the that user have
@@ -51,6 +60,7 @@ function GetUserKeys($mysqli, $userID) {
   while ($stmt->fetch()) {
     $keys[] = $key;
   }
+  $stmt->close();
   return $keys;
 }
 
