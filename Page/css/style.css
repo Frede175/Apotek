@@ -5,10 +5,10 @@ body {
 }
 
 .banner {
-	background-color: #00FF00;
+	background-color: #FFFFFF;
 	margin: 0 auto;
+	height: auto;
 	width: 75%;
-	height: 100px;
 }
 
 .navbar {
@@ -24,6 +24,18 @@ body {
 	padding: 0;
 	width: 75%;
 	height: 100%;
+}
+
+.singupin {
+	margin: 4px;
+}
+
+object {
+	margin: 1px;
+}
+
+input {
+	margin: 4px;
 }
 
 img {

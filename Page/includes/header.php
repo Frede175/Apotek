@@ -1,3 +1,6 @@
+<div class="banner">
+	<object type="image/svg+xml" data="banner.svg">Your browser does not support SVG</object>
+</div>
 <div class="navbar">
 	<ul>
 		<li><a href="index.php">Home</a></li>
