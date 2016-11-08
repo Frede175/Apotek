@@ -5,7 +5,7 @@ session_start();
 if (!isset($_SESSION['user_id'])) redirect("../login.php?message=You need to be logged in to view the page!");
 
 if (isset($_POST['ID'])) {
-  $stmt = $mysqli->prepare("SELECT product.ProductNumber, stock.Stock FROM product INNER JOIN product_has_prescription ON product.ProductNumber = product_has_prescription.Product_ProductNumber INNER JOIN stock ON product.ProductNumber = stock.ProductNumber INNER JOIN prescription ON product_has_prescription.Prescription_idPrescription = prescription.idPrescription WHERE product_has_prescription.Prescription_idPrescription = ? AND prescription.User_ID = ?");
+  $stmt = $mysqli->prepare("SELECT product.ProductNumber, stock.Stock FROM product INNER JOIN product_has_prescription ON product.ProductNumber = product_has_prescription.Product_ProductNumber INNER JOIN stock ON product.ProductNumber = stock.ProductNumber INNER JOIN prescription ON product_has_prescription.Prescription_ID = prescription.ID WHERE product_has_prescription.Prescription_ID = ? AND prescription.User_ID = ?");
   $stmt->bind_param('ii', $_POST['ID'], $_SESSION['user_id']);
   $stmt->execute();
   $result = $stmt->get_result();
@@ -17,6 +17,15 @@ if (isset($_POST['ID'])) {
       $stmt->execute();
     }
   }
+  $stmt->close();
+  $stmt = $mysqli->prepare("DELETE FROM product_has_prescription WHERE Prescription_ID = ?");
+  $stmt->bind_param('i', $_POST['ID']);
+  if (!($stmt->execute())) redirect("../view_prescriptions.php?message=Error");
+  $stmt->close();
+
+  $stmt = $mysqli->prepare("DELETE FROM prescription WHERE ID = ?");
+  $stmt->bind_param('i', $_POST['ID']);
+  if (!($stmt->execute())) redirect("../view_prescriptions.php?message=Error");
   $stmt->close();
   redirect("../view_prescriptions.php?message=You have bought your prescription");
 }

@@ -41,7 +41,7 @@ $result = $stmt->get_result();
           <?php
             $count = 0;
             while ($row = $result->fetch_array(MYSQLI_NUM)) {
-              if (!$row[4]) continue;
+              if ($row[4] == 1) continue;
               $html =
               "<tr>" .
                 "<td>" . $row[0] . "</td>" .

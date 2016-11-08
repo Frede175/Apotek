@@ -33,7 +33,7 @@ function GetFullName($mysqli, $userID) {
   $stmt->bind_result($FirstName, $LastName);
   $stmt->fetch();
   $stmt->close();
-  return $FirstName . " " . $LastName; 
+  return $FirstName . " " . $LastName;
 }
 
 /**
@@ -77,6 +77,17 @@ function RequireKey($mysqli, $keys) {
       if ($key == $UserKey) return true;
     }
   }
+  return false;
+}
+
+function HasRole($mysqli, $role) {
+  $stmt = $mysqli->prepare("SELECT roles.Name FROM Roles INNER JOIN User ON User.Roles_ID = Roles.ID WHERE user.ID = ?");
+  $stmt->bind_param("i", $_SESSION['user_id']);
+  $stmt->execute();
+  $stmt->bind_result($name);
+  $stmt->fetch();
+  $stmt->close();
+  if ($role == $name) return true;
   return false;
 }
 

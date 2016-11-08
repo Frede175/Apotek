@@ -4,7 +4,7 @@ City: Somewhere
 <br>
 Zip: 1234
 <br>
-Adress: Something st. 69
+Adress: Nede af vejen til højre, lige overfor ikea
 <br>
 Phone: +69 69 420 1337
 <br>

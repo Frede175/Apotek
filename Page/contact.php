@@ -7,7 +7,7 @@
   <body>
     <?php include_once 'includes/header.php'; ?>
     <div class="main">
-      <img src="http://www.inolabs.net/assets/images/news/590393/590393_4af83-289_docmorris_apotheke_hh-lurup-02.jpg" width="500">
+      <img src="http://www.harbourside.com.au/uploadedImages/harbourside.retail.mirvac.com/Content/Stores/pharmacist%20300x130.jpg" width="500">
       <h1>Contact information</h1>
       <p><?php include('text/contactloc.txt'); ?></p>
     </div>

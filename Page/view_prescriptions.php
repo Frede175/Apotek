@@ -11,7 +11,7 @@ if (isset($_POST['ID'])) {
   $stmt->fetch();
   $stmt->close();
 
-  $stmt = $mysqli->prepare("SELECT product.ProductNumber, product.Name, product.Description, product.Price, stock.Stock FROM product inner join product_has_prescription on product.ProductNumber = product_has_prescription.Product_ProductNumber INNER JOIN stock on stock.ProductNumber = product.ProductNumber WHERE product_has_prescription.Prescription_idPrescription = ?");
+  $stmt = $mysqli->prepare("SELECT product.ProductNumber, product.Name, product.Description, product.Price, stock.Stock FROM product inner join product_has_prescription on product.ProductNumber = product_has_prescription.Product_ProductNumber INNER JOIN stock on stock.ProductNumber = product.ProductNumber INNER JOIN prescription ON product_has_prescription.Prescription_ID = prescription.ID WHERE product_has_prescription.Prescription_ID = ?");
   $stmt->bind_param('i', $_POST['ID']);
   $stmt->execute();
   $result = $stmt->get_result();
@@ -95,6 +95,7 @@ else {
             <?php
               $count = 0;
               while ($row = $result->fetch_array(MYSQLI_NUM)) {
+                if(strtotime($row[4]) < strtotime($now = date("Y-m-d",mktime(0, 0, 0, date("m")  , date("d"), date("Y"))))) continue;
                 $html =
                 "<tr>" .
                   "<td>" . $row[1] . "</td>" .

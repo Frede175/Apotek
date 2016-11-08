@@ -19,7 +19,7 @@
         if ($stmt_check->execute()) {
           if ($stmt_check->affected_rows <= 0) {
             $stmt_check->close();
-            if (!isset($prescription)) $prescription = true;
+            if (!isset($prescription)) $prescription = false;
             $stmt = $mysqli->prepare("INSERT INTO Product (ProductNumber, Name, Description, Price, Prescription) VALUES (?, ?, ?, ?, ?)");
             $stmt->bind_param("issdi", $product_number, $name, $description, $price, boolval($prescription));
             if ($stmt->execute()) {

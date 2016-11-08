@@ -32,6 +32,22 @@
       <p>Address: <?php echo $Address; ?></p>
       <p>Zipcode: <?php echo $Zipcode; ?></p>
       <p>City: <?php echo $Zipcode_name; ?></p>
+
+      <a class="btn" href="cart.php">Cart</a>
+      <a class="btn" href="view_prescriptions.php">View your prescription</a>
+
+      <?php if (HasRole($mysqli, "Doctor")): ?>
+        <a class="btn" href="make_prescription.php">Make a new prescription</a>
+      <?php endif; if(HasRole($mysqli, "Employee")): ?>
+        <a class="btn" href="ManageStock.php">Manage stock</a>
+        <a class="btn" href="AddProduct.php">Add a new product</a>
+
+      <?php endif; if(HasRole($mysqli, "Admin")): ?>
+        <a class="btn" href="make_prescription.php">Make a new prescription</a>
+        <a class="btn" href="ManageStock.php">Manage stock</a>
+        <a class="btn" href="AddProduct.php">Add a new product</a>
+        <a class="btn" href="users.php">Manage users</a>
+      <?php endif; ?>
     </div>
   </body>
 </html>

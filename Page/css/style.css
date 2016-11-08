@@ -1,3 +1,6 @@
+html {
+	height: 100%;
+}
 body {
 	background-color: #297B48;
 	width: 100%;
@@ -21,9 +24,10 @@ body {
 .main {
 	background-color: #FFFFFF;
 	margin: 0 auto;
-	padding: 0;
+	padding: 0 auto;
+	padding-top: 25px;
 	width: 75%;
-	height: 100%;
+	min-height: 100%;
 }
 
 .signupin {
@@ -53,6 +57,16 @@ body {
 
 .green {
 	color: green;
+}
+
+.btn {
+	background-color: #4D9A6A;
+	display: inline-block;
+	padding: 8px 16px;
+	width: auto;
+	text-decoration: none;
+	text-align: center;
+	color: #FFFFFF;
 }
 
 object {
